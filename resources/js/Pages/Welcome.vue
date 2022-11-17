@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 defineProps({
     canLogin: Boolean,
@@ -7,6 +7,17 @@ defineProps({
     laravelVersion: String,
     phpVersion: String,
 });
+
+const form = useForm({
+    student_id: "",
+    password: "",
+});
+
+const submit = () => {
+    form.post(route("student.login"), {
+        onFinish: () => form.reset("password"),
+    });
+};
 </script>
 
 <template>
@@ -21,29 +32,31 @@ defineProps({
             Login To Your Account
         </div>
         <div class="mt-8">
-            <form action="#" autoComplete="off">
+            <form @submit.prevent="submit" autoComplete="off">
                 <div class="flex flex-col mb-2">
                     <div class="flex relative">
                         <span
                             class="rounded-l-md inline-flex items-center px-3 border-t bg-white border-l border-b border-gray-300 text-gray-500 shadow-sm text-sm"
                         >
                             <svg
-                                width="15"
-                                height="15"
+                                class="w-4 h-6"
                                 fill="currentColor"
-                                viewBox="0 0 1792 1792"
+                                viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"
+                                    fill-rule="evenodd"
+                                    d="M10 2a1 1 0 00-1 1v1a1 1 0 002 0V3a1 1 0 00-1-1zM4 4h3a3 3 0 006 0h3a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm2.5 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm2.45 4a2.5 2.5 0 10-4.9 0h4.9zM12 9a1 1 0 100 2h3a1 1 0 100-2h-3zm-1 4a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z"
+                                    clip-rule="evenodd"
                                 ></path>
                             </svg>
                         </span>
                         <input
                             type="text"
-                            id="sign-in-email"
+                            id="student_id"
                             class="rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                            placeholder="Your email"
+                            placeholder="Student Id"
+                            v-model="form.student_id"
                         />
                     </div>
                 </div>
@@ -69,6 +82,7 @@ defineProps({
                             id="sign-in-email"
                             class="rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                             placeholder="Your password"
+                            v-model="form.password"
                         />
                     </div>
                 </div>
@@ -93,13 +107,13 @@ defineProps({
             </form>
         </div>
         <div class="flex items-center justify-center mt-6">
-            <a
-                href="#"
+            <Link
+                :href="route('register')"
                 target="_blank"
                 class="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
             >
                 <span class="ml-2"> You don&#x27;t have an account? </span>
-            </a>
+            </Link>
         </div>
     </div>
 </template>

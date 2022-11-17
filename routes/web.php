@@ -4,6 +4,9 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LocationRackController;
+use App\Http\Controllers\SearchBookController;
+use App\Http\Controllers\Student\LoginController;
+use App\Http\Controllers\Student\RegisterController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -19,13 +22,20 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+Route::middleware('guest')->group(function(){
+    Route::get('/', [LoginController::class, 'loginForm']);
+    Route::post('/',[LoginController::class, 'store'])->name('student.login');
+
+    Route::get('/register', [RegisterController::class, 'create'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.post');
+});
+
+
+Route::group(['prefix' => 'student', 'middleware' => 'auth:student'], function(){
+    Route::get('/dashboard', function(){
+        return Inertia::render('Student/Dashboard');
+    })->name('student.dashboard');
+    Route::get('/search/book',[SearchBookController::class, 'index'])->name('search.book');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], function(){
