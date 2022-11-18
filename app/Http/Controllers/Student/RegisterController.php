@@ -13,6 +13,14 @@ use Inertia\Inertia;
 
 class RegisterController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('guest:student');
+    }
+
     /**
      * Display the registration view.
      *

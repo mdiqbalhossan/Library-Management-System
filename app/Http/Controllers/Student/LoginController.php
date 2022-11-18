@@ -15,8 +15,8 @@ class LoginController extends Controller
 
     public  function __construct()
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('guest:student')->except('logout');
+        $this->middleware('guest')->except('destroy');
+        $this->middleware('guest:student')->except('destroy');
     }
 
     public function loginForm()
@@ -31,5 +31,18 @@ class LoginController extends Controller
         $request->session()->regenerate();
 
         return redirect()->route('student.dashboard');
+    }
+
+    public function destroy(Request $request)
+    {
+
+        Auth::guard('student')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+            
     }
 }

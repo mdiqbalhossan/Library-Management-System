@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookIssueController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LocationRackController;
 use App\Http\Controllers\SearchBookController;
 use App\Http\Controllers\Student\LoginController;
 use App\Http\Controllers\Student\RegisterController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,20 +24,25 @@ use Inertia\Inertia;
 |
 */
 
-Route::middleware('guest')->group(function(){
-    Route::get('/', [LoginController::class, 'loginForm']);
-    Route::post('/',[LoginController::class, 'store'])->name('student.login');
 
-    Route::get('/register', [RegisterController::class, 'create'])->name('register');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.post');
-});
+Route::get('/', [LoginController::class, 'loginForm']);
+Route::post('/',[LoginController::class, 'store'])->name('student.login');
+
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.post');
 
 
-Route::group(['prefix' => 'student', 'middleware' => 'auth:student'], function(){
+Route::group(['prefix' => 'student', 'middleware' => ['auth:student']], function(){
     Route::get('/dashboard', function(){
         return Inertia::render('Student/Dashboard');
     })->name('student.dashboard');
+    Route::post('logout', [LoginController::class, 'destroy'])->name('student.logout');
     Route::get('/search/book',[SearchBookController::class, 'index'])->name('search.book');
+    Route::post('/search/book',[SearchBookController::class, 'search'])->name('search.book');
+    Route::post('/book/issue',[SearchBookController::class, 'issueBook'])->name('issue.book');
+    Route::get('/successful',function(){
+        return Inertia::render('Student/IssuedConfirm');
+    })->name('success');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], function(){
@@ -46,6 +53,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], functio
     Route::resource('author',AuthorController::class);
     Route::resource('location',LocationRackController::class);
     Route::resource('book', BookController::class);
+    Route::resource('student', StudentController::class);
+    Route::get('/issue/book',[BookIssueController::class, 'index'])->name('book.issue');
+    Route::get('/issue/book/{id}',[BookIssueController::class, 'view'])->name('book.issue.view');
+    Route::post('/issue/book/status/{id}',[BookIssueController::class, 'statusUpdate'])->name('book.issue.status');
+    Route::post('/issue/book/returned/{id}',[BookIssueController::class, 'returnUpdate'])->name('book.issue.return');
 });
 
 require __DIR__.'/auth.php';
