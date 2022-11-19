@@ -11,7 +11,7 @@ defineProps({
 <template>
     <Head title="Student Dashboard" />
     <FrontendLayout>
-        <div class="py-8 px-10">
+        <div class="py-8 md:px-10">
             <div>
                 <h2 class="text-2xl font-semibold leading-tight">Issue Book</h2>
             </div>

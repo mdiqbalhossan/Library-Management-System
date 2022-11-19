@@ -21,6 +21,12 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'dept' => 'required',
+            'session' => 'required',
+            'student_id' => 'required'
+        ]);
         
         $id = Auth::user()->id;
         $student = Student::find($id);
@@ -30,6 +36,7 @@ class ProfileController extends Controller
         $student->semester = $request->semester;
         $student->session = $request->session;
         $student->student_id = $request->student_id;
+        $student->is_profile_complete = 1;
         $student->save();
 
         return redirect()->back()->with('message','Profile Updated Successfully!!');

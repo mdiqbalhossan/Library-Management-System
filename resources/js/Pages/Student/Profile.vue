@@ -48,7 +48,7 @@ const submit = () => {
     <Head title="Student Profile" />
     <FrontendLayout>
         <SuccessAlert />
-        <div class="flex my-4 mx-4 space-x-4">
+        <div class="space-y-4 md:flex my-4 md:mx-4 md:space-x-4 md:space-y-0">
             <div class="w-full md:w-2/3">
                 <div
                     class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"

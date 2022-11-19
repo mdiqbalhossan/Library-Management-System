@@ -33,8 +33,8 @@ const submit = (id) => {
 <template>
     <Head title="Search Book" />
     <frontend-layout>
-        <div class="w-full bg-white p-12">
-            <div class="header flex items-end justify-between mb-12">
+        <div class="w-full bg-white md:p-12">
+            <div class="header md:flex md:items-end md:justify-between mb-12">
                 <div class="title">
                     <p class="text-4xl font-bold text-gray-800 mb-4">
                         All Book
@@ -61,7 +61,7 @@ const submit = (id) => {
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
                 <div
-                    class="overflow-hidden shadow-lg rounded-lg h-90 w-60 md:w-80 cursor-pointer m-auto"
+                    class="overflow-hidden shadow-lg rounded-lg h-90 w-full md:w-80 cursor-pointer m-auto"
                     v-for="book in books.data"
                     :key="book.id"
                 >

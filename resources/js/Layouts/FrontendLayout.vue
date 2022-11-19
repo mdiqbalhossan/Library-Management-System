@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import Notice from "@/Components/Notice.vue";
 
 const showingNavigationDropdown = ref(false);
 const showMenu = ref(false);
@@ -23,13 +24,7 @@ const showMenu = ref(false);
                             @click="showMenu = !showMenu"
                         >
                             <span class="sr-only">Open main menu</span>
-                            <!--
-                          Icon when menu is closed.
 
-                          Heroicon name: outline/bars-3
-
-                          Menu open: "hidden", Menu closed: "block"
-                        -->
                             <svg
                                 class="block h-6 w-6"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -84,20 +79,35 @@ const showMenu = ref(false);
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                                 <Link
                                     :href="route('student.dashboard')"
-                                    class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                                    class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                    :class="{
+                                        active: $page.url.startsWith(
+                                            '/student/dashboard'
+                                        ),
+                                    }"
                                     aria-current="page"
                                     >Dashboard</Link
                                 >
 
                                 <Link
                                     :href="route('student.issue.book')"
-                                    class="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                    class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                    :class="{
+                                        active: $page.url.startsWith(
+                                            '/student/issue'
+                                        ),
+                                    }"
                                     >Issue Book</Link
                                 >
 
                                 <Link
                                     :href="route('search.book')"
-                                    class="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                    class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                    :class="{
+                                        active: $page.url.startsWith(
+                                            '/student/search'
+                                        ),
+                                    }"
                                     >Search Book</Link
                                 >
                             </div>
@@ -195,22 +205,31 @@ const showMenu = ref(false);
             >
                 <div class="space-y-1 px-2 pt-2 pb-3">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                    <a
-                        href="#"
-                        class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                    <Link
+                        :href="route('student.dashboard')"
+                        class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                        :class="{
+                            active: $page.url.startsWith('/student/dashboard'),
+                        }"
                         aria-current="page"
-                        >Dashboard</a
+                        >Dashboard</Link
                     >
 
-                    <a
-                        href="#"
-                        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                        >Issue Book</a
+                    <Link
+                        :href="route('student.issue.book')"
+                        class="hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                        :class="{
+                            active: $page.url.startsWith('/student/issue'),
+                        }"
+                        >Issue Book</Link
                     >
 
                     <Link
                         :href="route('search.book')"
-                        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                        class="hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                        :class="{
+                            active: $page.url.startsWith('/student/search'),
+                        }"
                         >Search Book</Link
                     >
                 </div>
@@ -218,6 +237,7 @@ const showMenu = ref(false);
         </nav>
 
         <div class="container mx-auto px-10 py-10">
+            <Notice />
             <main>
                 <slot />
             </main>
