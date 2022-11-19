@@ -21,6 +21,7 @@ class StudentResource extends JsonResource
             'semester' => $this->semester,
             'session' => $this->session,
             'student_id' => $this->student_id,
+            'id' => $this->id,
         ];
     }
 }

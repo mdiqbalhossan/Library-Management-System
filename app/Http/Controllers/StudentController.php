@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\StudentResource;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class StudentController extends Controller
 {
@@ -13,7 +16,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = StudentResource::collection(Student::paginate(5));
+        return Inertia::render('StudentBackend/Index',compact('students'));
     }
 
     /**
@@ -77,8 +81,9 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        //
+        $student->delete();
+        return redirect()->back()->with('message','Student Deleted Successfully!!');
     }
 }

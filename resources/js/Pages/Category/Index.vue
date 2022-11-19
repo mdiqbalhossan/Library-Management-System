@@ -175,7 +175,11 @@ defineProps({
                                 </tr>
                             </tbody>
                         </table>
-                        <Pagination class="mt-6" :links="categories.links" />
+                        <Pagination
+                            class="mt-6"
+                            :links="categories.links"
+                            :meta="categories.meta"
+                        />
                     </div>
                 </div>
             </div>

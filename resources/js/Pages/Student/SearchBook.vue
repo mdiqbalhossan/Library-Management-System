@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import FrontendLayout from "@/Layouts/FrontendLayout.vue";
+import Pagination from "@/Components/Pagination.vue";
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import { watch } from "vue";
@@ -109,6 +110,7 @@ const submit = (id) => {
                     </a>
                 </div>
             </div>
+            <Pagination class="mt-6" :links="books.links" :meta="books.meta" />
         </div>
     </frontend-layout>
 </template>

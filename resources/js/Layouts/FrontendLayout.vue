@@ -89,10 +89,10 @@ const showMenu = ref(false);
                                     >Dashboard</Link
                                 >
 
-                                <a
-                                    href="#"
+                                <Link
+                                    :href="route('student.issue.book')"
                                     class="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                    >Issue Book</a
+                                    >Issue Book</Link
                                 >
 
                                 <Link
@@ -161,22 +161,15 @@ const showMenu = ref(false);
                                 :class="{ hidden: !showingNavigationDropdown }"
                             >
                                 <!-- Active: "bg-gray-100", Not Active: "" -->
-                                <a
-                                    href="#"
+                                <Link
+                                    :href="route('student.profile')"
                                     class="block px-4 py-2 text-sm text-gray-700"
                                     role="menuitem"
                                     tabindex="-1"
                                     id="user-menu-item-0"
-                                    >Your Profile</a
+                                    >Your Profile</Link
                                 >
-                                <a
-                                    href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700"
-                                    role="menuitem"
-                                    tabindex="-1"
-                                    id="user-menu-item-1"
-                                    >Settings</a
-                                >
+
                                 <Link
                                     :href="route('student.logout')"
                                     as="button"

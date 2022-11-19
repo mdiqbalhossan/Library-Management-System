@@ -7,18 +7,18 @@ import { ref } from "vue";
 const showModal = ref(false);
 const id = "";
 defineProps({
-    locationRacks: Object,
+    students: Object,
 });
 </script>
 
 <template>
-    <Head title="Location Racks" />
+    <Head title="Student" />
     <authenticated-layout>
         <div class="bg-white p-8 rounded-md w-full">
             <div class="flex items-center justify-between pb-6">
                 <div>
-                    <h2 class="text-gray-600 font-semibold">Location Racks</h2>
-                    <span class="text-xs">All Location Racks</span>
+                    <h2 class="text-gray-600 font-semibold">Student</h2>
+                    <span class="text-xs">All Student</span>
                 </div>
                 <div class="flex items-center justify-between">
                     <div class="flex bg-gray-50 items-center p-2 rounded-md">
@@ -41,14 +41,6 @@ defineProps({
                             id=""
                             placeholder="search..."
                         />
-                    </div>
-                    <div class="lg:ml-40 ml-10 space-x-8">
-                        <Link
-                            :href="route('location.create')"
-                            class="bg-indigo-600 hover:bg-indigo-800 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
-                        >
-                            Create
-                        </Link>
                     </div>
                 </div>
             </div>
@@ -76,7 +68,22 @@ defineProps({
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                                     >
-                                        status
+                                        Dept
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                                    >
+                                        Year
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                                    >
+                                        Session
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                                    >
+                                        Session
                                     </th>
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
@@ -87,8 +94,8 @@ defineProps({
                             </thead>
                             <tbody>
                                 <tr
-                                    v-for="locationRack in locationRacks.data"
-                                    :key="locationRack.id"
+                                    v-for="student in students.data"
+                                    :key="student.id"
                                 >
                                     <td
                                         class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
@@ -96,7 +103,7 @@ defineProps({
                                         <p
                                             class="text-gray-900 whitespace-no-wrap"
                                         >
-                                            {{ locationRack.id }}
+                                            {{ student.student_id }}
                                         </p>
                                     </td>
                                     <td
@@ -105,20 +112,8 @@ defineProps({
                                         <p
                                             class="text-gray-900 whitespace-no-wrap"
                                         >
-                                            {{ locationRack.name }}
+                                            {{ student.name }}
                                         </p>
-                                    </td>
-                                    <td
-                                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
-                                    >
-                                        <span
-                                            class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-5 py-1 rounded dark:bg-indigo-200 dark:text-indigo-900"
-                                            >{{
-                                                locationRack.status == 1
-                                                    ? "Enable"
-                                                    : "Disable"
-                                            }}</span
-                                        >
                                     </td>
                                     <td
                                         class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
@@ -126,38 +121,48 @@ defineProps({
                                         <p
                                             class="text-gray-900 whitespace-no-wrap"
                                         >
-                                            <Link
-                                                :href="
-                                                    route(
-                                                        'location.edit',
-                                                        locationRack.id
-                                                    )
-                                                "
-                                                as="button"
-                                                class="bg-indigo-600 hover:bg-indigo-800 px-1 py-1 rounded-md text-white font-semibold tracking-wide cursor-pointer"
-                                            >
-                                                <svg
-                                                    class="w-6 h-6"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path
-                                                        d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
-                                                    ></path>
-                                                    <path
-                                                        fill-rule="evenodd"
-                                                        d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                        clip-rule="evenodd"
-                                                    ></path>
-                                                </svg>
-                                            </Link>
+                                            {{ student.dept }}
+                                        </p>
+                                    </td>
+                                    <td
+                                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                    >
+                                        <p
+                                            class="text-gray-900 whitespace-no-wrap"
+                                        >
+                                            {{ student.year }}
+                                        </p>
+                                    </td>
+                                    <td
+                                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                    >
+                                        <p
+                                            class="text-gray-900 whitespace-no-wrap"
+                                        >
+                                            {{ student.semester }}
+                                        </p>
+                                    </td>
+                                    <td
+                                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                    >
+                                        <p
+                                            class="text-gray-900 whitespace-no-wrap"
+                                        >
+                                            {{ student.session }}
+                                        </p>
+                                    </td>
+                                    <td
+                                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
+                                    >
+                                        <p
+                                            class="text-gray-900 whitespace-no-wrap"
+                                        >
                                             <button
                                                 type="button"
                                                 class="bg-red-600 hover:bg-red-800 px-1 py-1 mx-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
                                                 @click="
                                                     (showModal = !showModal),
-                                                        (id = locationRack.id)
+                                                        (id = student.id)
                                                 "
                                             >
                                                 <svg
@@ -180,8 +185,8 @@ defineProps({
                         </table>
                         <Pagination
                             class="mt-6"
-                            :links="locationRacks.links"
-                            :meta="locationRacks.meta"
+                            :links="students.links"
+                            :meta="students.meta"
                         />
                     </div>
                 </div>
@@ -246,7 +251,7 @@ defineProps({
                             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
                             as="button"
                             method="delete"
-                            :href="route('location.destroy', id)"
+                            :href="route('student.destroy', id)"
                             @click="showModal = !showModal"
                         >
                             Yes, I'm sure

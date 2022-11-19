@@ -6,7 +6,9 @@ use App\Http\Controllers\BookIssueController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LocationRackController;
 use App\Http\Controllers\SearchBookController;
+use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\LoginController;
+use App\Http\Controllers\Student\ProfileController;
 use App\Http\Controllers\Student\RegisterController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Foundation\Application;
@@ -33,9 +35,8 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.p
 
 
 Route::group(['prefix' => 'student', 'middleware' => ['auth:student']], function(){
-    Route::get('/dashboard', function(){
-        return Inertia::render('Student/Dashboard');
-    })->name('student.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('student.dashboard');
+    Route::get('/issue/book', [DashboardController::class, 'issueBook'])->name('student.issue.book');
     Route::post('logout', [LoginController::class, 'destroy'])->name('student.logout');
     Route::get('/search/book',[SearchBookController::class, 'index'])->name('search.book');
     Route::post('/search/book',[SearchBookController::class, 'search'])->name('search.book');
@@ -43,6 +44,8 @@ Route::group(['prefix' => 'student', 'middleware' => ['auth:student']], function
     Route::get('/successful',function(){
         return Inertia::render('Student/IssuedConfirm');
     })->name('success');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('student.profile');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('student.profile.update');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], function(){
