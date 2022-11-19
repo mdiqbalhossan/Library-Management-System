@@ -7,6 +7,7 @@ use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
 class ProfileController extends Controller
@@ -32,5 +33,23 @@ class ProfileController extends Controller
         $student->save();
 
         return redirect()->back()->with('message','Profile Updated Successfully!!');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed'
+        ]);
+
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with('message','Old Password Does not match!');
+        }
+
+        Student::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return redirect()->back()->with('message','Password Change Successfully!!');
     }
 }

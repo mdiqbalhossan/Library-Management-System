@@ -46,6 +46,7 @@ Route::group(['prefix' => 'student', 'middleware' => ['auth:student']], function
     })->name('success');
     Route::get('/profile', [ProfileController::class, 'index'])->name('student.profile');
     Route::post('/profile', [ProfileController::class, 'update'])->name('student.profile.update');
+    Route::post('/profile/change/password', [ProfileController::class, 'changePassword'])->name('student.profile.change.password');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], function(){
