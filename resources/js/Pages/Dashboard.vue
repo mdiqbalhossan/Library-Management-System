@@ -1,6 +1,9 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/inertia-vue3";
+defineProps({
+    total: Array,
+});
 </script>
 
 <template>
@@ -36,7 +39,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                         </svg>
                     </div>
                     <div class="text-right">
-                        <p class="text-2xl">1,257</p>
+                        <p class="text-2xl">{{ total.issue_book }}</p>
                         <p>Total Book Issue</p>
                     </div>
                 </div>
@@ -65,7 +68,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                         </svg>
                     </div>
                     <div class="text-right">
-                        <p class="text-2xl">557</p>
+                        <p class="text-2xl">{{ total.return }}</p>
                         <p>Total Book Returned</p>
                     </div>
                 </div>
@@ -94,7 +97,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                         </svg>
                     </div>
                     <div class="text-right">
-                        <p class="text-2xl">$11,257</p>
+                        <p class="text-2xl">{{ total.not_return }}</p>
                         <p>Total Book Not return</p>
                     </div>
                 </div>
@@ -123,7 +126,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                         </svg>
                     </div>
                     <div class="text-right">
-                        <p class="text-2xl">$75,257</p>
+                        <p class="text-2xl">${{ total.fines }}</p>
                         <p>Total Fines Received</p>
                     </div>
                 </div>
@@ -159,7 +162,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                         </svg>
                     </div>
                     <div class="text-right">
-                        <p class="text-2xl">1,257</p>
+                        <p class="text-2xl">{{ total.book }}</p>
                         <p>Total Book</p>
                     </div>
                 </div>
@@ -188,7 +191,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                         </svg>
                     </div>
                     <div class="text-right">
-                        <p class="text-2xl">557</p>
+                        <p class="text-2xl">{{ total.author }}</p>
                         <p>Total Author</p>
                     </div>
                 </div>
@@ -217,7 +220,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                         </svg>
                     </div>
                     <div class="text-right">
-                        <p class="text-2xl">$11,257</p>
+                        <p class="text-2xl">{{ total.category }}</p>
                         <p>Total Category</p>
                     </div>
                 </div>
@@ -246,7 +249,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                         </svg>
                     </div>
                     <div class="text-right">
-                        <p class="text-2xl">$75,257</p>
+                        <p class="text-2xl">{{ total.location }}</p>
                         <p>Total Location Rack</p>
                     </div>
                 </div>

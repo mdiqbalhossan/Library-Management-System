@@ -4,8 +4,10 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookIssueController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController as ControllersDashboardController;
 use App\Http\Controllers\LocationRackController;
 use App\Http\Controllers\SearchBookController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\LoginController;
 use App\Http\Controllers\Student\ProfileController;
@@ -50,9 +52,7 @@ Route::group(['prefix' => 'student', 'middleware' => ['auth:student']], function
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], function(){
-    Route::get('/dashboard', function(){
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [ControllersDashboardController::class, 'index'])->name('dashboard');
     Route::resource('category',CategoryController::class);
     Route::resource('author',AuthorController::class);
     Route::resource('location',LocationRackController::class);
@@ -62,6 +62,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], functio
     Route::get('/issue/book/{id}',[BookIssueController::class, 'view'])->name('book.issue.view');
     Route::post('/issue/book/status/{id}',[BookIssueController::class, 'statusUpdate'])->name('book.issue.status');
     Route::post('/issue/book/returned/{id}',[BookIssueController::class, 'returnUpdate'])->name('book.issue.return');
+    Route::get('/setting',[SettingController::class,'index'])->name('settings');
+    Route::post('/setting',[SettingController::class,'store'])->name('settings');
 });
 
 require __DIR__.'/auth.php';
