@@ -1,5 +1,24 @@
-<h1>Library Management System</h1>
-<h3>Frontend: Tailwind Css, Vue js, Inertia Js</h3>
-<h3>Backend: PHP, Laravel</h3>
-<h3>Database: SQLite</h3>
+
+# Library Management System
+
+Frontend: Tailwind Css, Vue js, Inertia Js
+
+Backend: PHP, Laravel
+
+Database: SQLite
+
+
+## Authors
+
+- [@Md Iqbal Hossan Fazlay Rabbi](https://www.github.com/mdiqbalhossan)
+
+
+## Demo
+
+
+
+
+## Screenshots
+
+![App Screenshot](https://github.com/mdiqbalhossan/Library-Management-System/blob/main/screenshot/1.png)
 
