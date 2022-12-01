@@ -47,4 +47,16 @@ class BookIssueController extends Controller
 
         return redirect()->route('book.issue')->with('message','Book Returned Successfully!!');
     }
+
+    public function search(Request $request)
+    {
+        $books = BookIssueResource::collection(
+            BookIssue::where('unique_id','like','%'.$request->search.'%')
+            ->orWhere('student_id','like','%'.$request->search.'%')
+            ->orderBy('id','desc')
+            ->with('book','student')
+            ->paginate(5)
+        );
+        return Inertia::render('BookIssue/Index', compact('books'));
+    }
 }

@@ -4,10 +4,28 @@ import Pagination from "@/Components/Pagination.vue";
 import SuccessAlert from "@/Components/SuccessAlert.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref } from "vue";
+
+import { Inertia } from "@inertiajs/inertia";
+import { watch } from "vue";
+
 const showModal = ref(false);
 const id = "";
-defineProps({
-    issueBooks: Object,
+const props = defineProps({
+    issueBooks: {
+        type: Object,
+        default: () => ({}),
+    },
+});
+
+let search = ref("");
+watch(search, (value) => {
+    Inertia.post(
+        "/admin/issue/book",
+        { search: value },
+        {
+            preserveState: true,
+        }
+    );
 });
 </script>
 
@@ -40,6 +58,7 @@ defineProps({
                             name=""
                             id=""
                             placeholder="search..."
+                            v-model="search"
                         />
                     </div>
                 </div>

@@ -62,6 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], functio
     Route::get('/issue/book/{id}',[BookIssueController::class, 'view'])->name('book.issue.view');
     Route::post('/issue/book/status/{id}',[BookIssueController::class, 'statusUpdate'])->name('book.issue.status');
     Route::post('/issue/book/returned/{id}',[BookIssueController::class, 'returnUpdate'])->name('book.issue.return');
+    Route::post('/issue/book',[BookIssueController::class, 'search']);
     Route::get('/setting',[SettingController::class,'index'])->name('settings');
     Route::post('/setting',[SettingController::class,'store'])->name('settings');
 });
