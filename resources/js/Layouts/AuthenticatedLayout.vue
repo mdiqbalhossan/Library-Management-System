@@ -194,7 +194,12 @@ const showingNavigationDropdown = ref(false);
                                 <li>
                                     <Link
                                         :href="route('dashboard')"
-                                        class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+                                        class="text-base font-normal rounded-lg flex items-center p-2 group"
+                                        :class="{
+                                            active: $page.url.startsWith(
+                                                '/admin/dashboard'
+                                            ),
+                                        }"
                                     >
                                         <svg
                                             class="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
@@ -215,7 +220,12 @@ const showingNavigationDropdown = ref(false);
                                 <li>
                                     <Link
                                         :href="route('category.index')"
-                                        class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+                                        class="text-base font-normal rounded-lg flex items-center p-2 group"
+                                        :class="{
+                                            active: $page.url.startsWith(
+                                                '/admin/category'
+                                            ),
+                                        }"
                                     >
                                         <svg
                                             class="w-6 h-6"
@@ -233,7 +243,12 @@ const showingNavigationDropdown = ref(false);
                                 <li>
                                     <Link
                                         :href="route('author.index')"
-                                        class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+                                        class="text-base font-normal rounded-lg flex items-center p-2 group"
+                                        :class="{
+                                            active: $page.url.startsWith(
+                                                '/admin/author'
+                                            ),
+                                        }"
                                     >
                                         <svg
                                             class="w-6 h-6"
@@ -251,7 +266,12 @@ const showingNavigationDropdown = ref(false);
                                 <li>
                                     <Link
                                         :href="route('location.index')"
-                                        class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+                                        class="text-base font-normal rounded-lg flex items-center p-2 group"
+                                        :class="{
+                                            active: $page.url.startsWith(
+                                                '/admin/location'
+                                            ),
+                                        }"
                                     >
                                         <svg
                                             class="w-6 h-6"
@@ -271,7 +291,12 @@ const showingNavigationDropdown = ref(false);
                                 <li>
                                     <Link
                                         :href="route('book.index')"
-                                        class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+                                        class="text-base font-normal rounded-lg flex items-center p-2 group"
+                                        :class="{
+                                            active: $page.url.startsWith(
+                                                '/admin/book'
+                                            ),
+                                        }"
                                     >
                                         <svg
                                             class="w-6 h-6"
@@ -289,7 +314,12 @@ const showingNavigationDropdown = ref(false);
                                 <li>
                                     <Link
                                         :href="route('student.index')"
-                                        class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+                                        class="text-base font-normal rounded-lg flex items-center p-2 group"
+                                        :class="{
+                                            active: $page.url.startsWith(
+                                                '/admin/student'
+                                            ),
+                                        }"
                                     >
                                         <svg
                                             class="w-6 h-6"
@@ -309,7 +339,12 @@ const showingNavigationDropdown = ref(false);
                                 <li>
                                     <Link
                                         :href="route('book.issue')"
-                                        class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+                                        class="text-base font-normal rounded-lg flex items-center p-2 group"
+                                        :class="{
+                                            active: $page.url.startsWith(
+                                                '/admin/issue/book'
+                                            ),
+                                        }"
                                     >
                                         <svg
                                             class="w-6 h-6"
@@ -332,7 +367,12 @@ const showingNavigationDropdown = ref(false);
                                 <li>
                                     <Link
                                         :href="route('settings')"
-                                        class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
+                                        class="text-base font-normal rounded-lg flex items-center p-2 group"
+                                        :class="{
+                                            active: $page.url.startsWith(
+                                                '/admin/setting'
+                                            ),
+                                        }"
                                     >
                                         <svg
                                             class="w-6 h-6"
