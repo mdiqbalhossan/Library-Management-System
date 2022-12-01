@@ -13,12 +13,7 @@ Database: SQLite
 - [@Md Iqbal Hossan Fazlay Rabbi](https://www.github.com/mdiqbalhossan)
 
 
-## Demo
-
-
-
-
 ## Screenshots
-
+1. Dashboard
 ![App Screenshot](https://github.com/mdiqbalhossan/Library-Management-System/blob/main/screenshot/1.png)
 
